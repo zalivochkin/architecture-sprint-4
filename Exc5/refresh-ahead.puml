@@ -1,0 +1,33 @@
+﻿@startuml
+title Sequence diagram Refresh-ahead
+
+participant MES_API
+participant MES_Cache
+participant MES_DB
+
+activate MES_API
+
+MES_API -> MES_Cache: get orders list (entity: order)
+activate MES_Cache
+alt No data in cache
+    MES_Cache -> MES_DB: get orders list (entity: order)
+    activate MES_DB
+    MES_DB --> MES_Cache: orders list (entity: order)
+    deactivate MES_DB
+    MES_Cache --> MES_API: orders list (entity: order)
+    loop start async update
+        MES_Cache -> MES_DB: get orders list (entity: order)
+        activate MES_Cache
+        activate MES_DB
+        MES_DB --> MES_Cache: orders list (entity: order)
+        deactivate MES_DB
+        deactivate MES_Cache
+    end
+else Data already in cache
+    MES_Cache --> MES_API: orders list (entity: order)
+end
+deactivate MES_Cache
+
+deactivate MES_API
+
+@enduml
