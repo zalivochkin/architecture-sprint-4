@@ -62,6 +62,12 @@
 * Number of simultanious sessions for shop API
 * Number of simultanious sessions for CRM API
 * Number of simultanious sessions for MES API
+* CPU % for shop API
+* CPU % for CRM API
+* CPU % for MES API
+* Number of connections for shop db instance
+* Number of connections for MES db instance
+* Number of message in flight in RabbitMQ
 - инфраструктура: надо добавить сбор логов всех уровней (FATAL, ERROR, WARN, INFO, TRACE, DEBUG) со всех компонентов
 
 Следующие пункты в порядке убывания важности:
