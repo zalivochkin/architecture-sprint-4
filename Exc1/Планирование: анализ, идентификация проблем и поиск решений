@@ -59,6 +59,9 @@
 * Failed query for MES db instance
 * Number of dead-letter-exchange letters in RabbitMQ
 * Size of S3 storage
+* Number of simultanious sessions for shop API
+* Number of simultanious sessions for CRM API
+* Number of simultanious sessions for MES API
 - инфраструктура: надо добавить сбор логов всех уровней (FATAL, ERROR, WARN, INFO, TRACE, DEBUG) со всех компонентов
 
 Следующие пункты в порядке убывания важности:
