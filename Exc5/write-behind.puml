@@ -1,0 +1,23 @@
+﻿@startuml
+title Sequence diagram Write-Behind
+
+participant MES_API
+participant MES_Cache
+participant MES_DB
+
+activate MES_API
+
+MES_API -> MES_Cache: update order (entity: order)
+activate MES_Cache
+MES_Cache -> MES_Cache: update order in cache (entity: order)
+MES_Cache --> MES_API: updated order (entity: order)
+deactivate MES_API
+MES_Cache -> MES_DB: async update order in db (entity: order)
+activate MES_DB
+MES_DB -> MES_Cache: updated order (entity: order)
+deactivate MES_DB
+deactivate MES_Cache
+
+deactivate MES_API
+
+@enduml
